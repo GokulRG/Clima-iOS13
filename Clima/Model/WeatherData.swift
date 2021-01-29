@@ -6,16 +6,17 @@
 //  Copyright © 2021 App Brewery. All rights reserved.
 //
 
-struct WeatherData: Decodable {
+// Codable = Encodable & Decodable (Typealias)
+struct WeatherData: Codable {
     let name: String
     let main: Main
     let weather: [WeatherInfo]
 }
 
-struct Main: Decodable {
+struct Main: Codable {
     let temp: Double
 }
 
-struct WeatherInfo: Decodable {
-    let description: String
+struct WeatherInfo: Codable {
+    let id: Int
 }
