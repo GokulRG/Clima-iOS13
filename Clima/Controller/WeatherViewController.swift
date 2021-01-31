@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate {
+class WeatherViewController: UIViewController {
 
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -22,7 +22,11 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         searchTextField.delegate = self
         weatherManager.delegate = self
     }
+}
 
+//MARK: - UITextFieldDelegate
+extension WeatherViewController: UITextFieldDelegate {
+    
     @IBAction func searchButtonPressed(_ sender: UIButton) {
         searchTextField.endEditing(true)
     }
@@ -47,7 +51,10 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
             return false
         }
     }
-    
+}
+
+//MARK: - Weather Manager Delegate
+extension WeatherViewController: WeatherManagerDelegate {
     func didUpdateWeather(_ weatherManager: WeatherManager,_ weather: WeatherModel) {
         // The below lines of code will not work! because we can't update UI elements from any other thread other than the main thread. This is a part of the thread that was used to fetch the weather information. So we need to use DispatchQueue
         //temperatureLabel.text = weather.temperatureString
