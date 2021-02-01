@@ -24,6 +24,11 @@ struct WeatherManager {
         performRequest(with: urlString)
     }
     
+    func fetchWeather(latitude: Double, longitude: Double) {
+        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
+        performRequest(with: urlString)
+    }
+    
     func performRequest(with urlString: String) {
         // Step 1: Create a URL with a URL String - Since strings are fraught with typos this generates an optional URL? so we use an if-let
         if let url = URL(string: urlString) {
